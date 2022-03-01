@@ -1,0 +1,4 @@
+[submodule "LibElite"]
+	path = LibElite
+	url = https://github.com/JefferiesTube/LibElite.git
+	branch = master
