@@ -24,3 +24,7 @@ This project will not send the data directly to your motion system. It aims to p
 ## Can I get banned?
 
 Probably not, since a lot of motion system plugins use a similar approach. But since Fontier has no official statement regarding memory reading (reading only!), I will surely not guarantee that it's safe. If anyone of Frontier reads this: Let me know if I need to change anything to make this accepted. Or preferable: Make this project obsolete by finally providing an official telemetry API.
+
+## Environment
+
+Currently, Windows 64-Bit only. The project is built with WPF and .NET 4.7.2 - so it should run on almost any version of Windows without larger hassle. Unfortunately, no support for other OS/Consoles.
