@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32126.317
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EliteMotionTelemetry", "\EliteMotionTelemetry\EliteMotionTelemetry.csproj", "{570CD7B1-CFC7-4625-AE4F-76709A897062}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibElite", "\LibElite\LibElite.csproj", "{4F843E73-E48C-44CA-A0EF-BC1AA1ED02CE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{570CD7B1-CFC7-4625-AE4F-76709A897062}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{570CD7B1-CFC7-4625-AE4F-76709A897062}.Debug|x64.Build.0 = Debug|Any CPU
+		{570CD7B1-CFC7-4625-AE4F-76709A897062}.Release|x64.ActiveCfg = Release|Any CPU
+		{570CD7B1-CFC7-4625-AE4F-76709A897062}.Release|x64.Build.0 = Release|Any CPU
+		{4F843E73-E48C-44CA-A0EF-BC1AA1ED02CE}.Debug|x64.ActiveCfg = Debug|x64
+		{4F843E73-E48C-44CA-A0EF-BC1AA1ED02CE}.Debug|x64.Build.0 = Debug|x64
+		{4F843E73-E48C-44CA-A0EF-BC1AA1ED02CE}.Release|x64.ActiveCfg = Release|x64
+		{4F843E73-E48C-44CA-A0EF-BC1AA1ED02CE}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CB6B0FC1-A17E-4179-A018-4270BE872611}
+	EndGlobalSection
+EndGlobal

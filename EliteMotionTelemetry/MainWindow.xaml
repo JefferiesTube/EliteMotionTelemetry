@@ -1,0 +1,99 @@
+﻿<windows:Window x:Class="EliteMotionTelemetry.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:windows="clr-namespace:System.Windows;assembly=PresentationFramework"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:viewModels="clr-namespace:EliteMotionTelemetry.ViewModels"
+        xmlns:visibility="clr-namespace:EliteMotionTelemetry.Converter.Visibility"
+        mc:Ignorable="d" ResizeMode="CanMinimize"
+        Style="{DynamicResource CustomWindowStyle}"
+        d:DataContext="{d:DesignInstance Type=viewModels:MainWindowVM}"
+        DataContext="{dxmvvm:ViewModelSource Type=viewModels:MainWindowVM}"
+        Title="Elite Motion Telemetry" Height="200" Width="250">
+    <dxmvvm:Interaction.Behaviors>
+        <dxmvvm:EventToCommand Event="Loaded" Command="{Binding LoadJournalCommand}" />
+    </dxmvvm:Interaction.Behaviors>
+    <Window.Resources>
+        <Style x:Key="LiveViewLabel">
+            <Setter Property="TextBlock.HorizontalAlignment" Value="Left" />
+        </Style>
+        <Style x:Key="LiveViewData">
+            <Setter Property="TextBlock.HorizontalAlignment" Value="Right" />
+            <Setter Property="TextBlock.Margin" Value="0,0,16,0" />
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <!-- Attach to process view -->
+        <Grid Visibility="{Binding State, Converter={visibility:EnumToVisibilityConverter}, ConverterParameter={x:Static viewModels:ViewState.Idle}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0">
+                <Image Source="Graphics/EliteLogo.png" Height="24" Width="24" Margin="4" RenderOptions.BitmapScalingMode="Fant" />
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2,0,0,0">ELITE MOTION TELEMETRY</TextBlock>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                <Button Foreground="Orange" Width="180" Height="60" Command="{Binding AttachProcessCommand}">Attach to Elite</Button>
+                <TextBlock HorizontalAlignment="Center" Text="{Binding AttachErrorMessage}"/>
+            </StackPanel>
+        </Grid>
+
+        <!-- Live Telemetry View -->
+        <Grid Visibility="{Binding State, Converter={visibility:EnumToVisibilityConverter}, ConverterParameter={x:Static viewModels:ViewState.Attached}}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0">
+                <Image Source="Graphics/EliteLogo.png" Height="24" Width="24" Margin="4" RenderOptions.BitmapScalingMode="Fant" />
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Margin="2,0,0,0">ELITE MOTION TELEMETRY</TextBlock>
+            </StackPanel>
+
+            <Grid Grid.Row="1" VerticalAlignment="Center" Margin="16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Style="{StaticResource LiveViewLabel}" Text="Speed" Grid.Row="0" Grid.Column="1"/>
+                <TextBlock Style="{StaticResource LiveViewData}" Text="{Binding Speed}" Grid.Row="0" Grid.Column="2" />
+
+                <TextBlock Style="{StaticResource LiveViewLabel}" Text="Roll" Grid.Row="1" Grid.Column="0"/>
+                <TextBlock Style="{StaticResource LiveViewData}" Text="{Binding Roll}" Grid.Row="1" Grid.Column="1" />
+                <TextBlock Style="{StaticResource LiveViewLabel}" Text="Pitch" Grid.Row="2" Grid.Column="0"/>
+                <TextBlock Style="{StaticResource LiveViewData}" Text="{Binding Pitch}" Grid.Row="2" Grid.Column="1" />
+                <TextBlock Style="{StaticResource LiveViewLabel}" Text="Yaw" Grid.Row="3" Grid.Column="0"/>
+                <TextBlock Style="{StaticResource LiveViewData}" Text="{Binding Yaw}" Grid.Row="3" Grid.Column="1" />
+
+                <TextBlock Style="{StaticResource LiveViewLabel}" Text="Heave" Grid.Row="1" Grid.Column="2"/>
+                <TextBlock Style="{StaticResource LiveViewData}" Text="{Binding Heave}" Grid.Row="1" Grid.Column="3" />
+                <TextBlock Style="{StaticResource LiveViewLabel}" Text="Sway" Grid.Row="2" Grid.Column="2"/>
+                <TextBlock Style="{StaticResource LiveViewData}" Text="{Binding Sway}" Grid.Row="2" Grid.Column="3" />
+                <TextBlock Style="{StaticResource LiveViewLabel}" Text="Surge" Grid.Row="3" Grid.Column="2"/>
+                <TextBlock Style="{StaticResource LiveViewData}" Text="{Binding Surge}" Grid.Row="3" Grid.Column="3" />
+
+            </Grid>
+        </Grid>
+
+        <!-- Loading view -->
+        <StackPanel VerticalAlignment="Center" 
+                    Visibility="{Binding State, Converter={visibility:EnumToVisibilityConverter}, ConverterParameter={x:Static viewModels:ViewState.Loading}}">
+            <Image Source="Graphics/EliteLogo.png" RenderOptions.BitmapScalingMode="Fant" Width="75" Height="75" />
+            <TextBlock HorizontalAlignment="Center">LOADING JOURNAL...</TextBlock>
+        </StackPanel>
+    </Grid>
+</windows:Window>
